@@ -1,196 +1,244 @@
 # 🔬 AI-Powered Research Assistant using LangGraph and RAG
 
-An intelligent multi-agent research platform that automates report generation using Large Language Models (LLMs), Retrieval-Augmented Generation (RAG), and LangGraph workflows.
+An intelligent multi-agent AI research platform that automates research report generation using Large Language Models (LLMs), LangGraph workflows, and Retrieval-Augmented Generation (RAG).
 
-The system performs web research, generates structured reports, stores research history, supports semantic retrieval using FAISS, enables report-based question answering, and exports reports as PDF and DOCX.
+The platform performs autonomous research, generates structured reports with citations, stores research history, enables semantic retrieval using FAISS, supports report-based question answering, and exports reports as PDF and DOCX.
 
 ---
 
-## 🚀 Features
+## 🚀 Live Demo
 
-- 🤖 Multi-Agent workflow using LangGraph
+🌐 **Application:** https://ragproject345.streamlit.app/
+
+---
+
+## ✨ Features
+
+- 🤖 Multi-Agent AI Workflow using LangGraph
 - 🔍 Retrieval-Augmented Generation (RAG)
-- 🧠 Semantic Search using FAISS
-- 📚 Research History & Memory
+- 🧠 Semantic Search with FAISS
+- 📚 Research History Management
 - 💬 Chat with Generated Reports
 - 📄 PDF Export
 - 📘 DOCX Export
-- 📊 Report Analytics
+- 📊 Report Analytics Dashboard
+- 🔗 Citation Generation
 - 🌐 Automated Web Research
-- 📝 Citation Generation
+- 📝 Persistent Memory Storage
 
 ---
 
-## 🏗️ System Architecture
+# 🏗️ System Architecture
 
 ```text
-                User Query
-                     │
-                     ▼
-            Streamlit User Interface
-                     │
-                     ▼
-              LangGraph Workflow
-                     │
- ┌───────────────────┼───────────────────┐
- ▼                   ▼                   ▼
-Planner Agent   Research Agent    Review Agent
-                     │
-                     ▼
-              Report Generation
-                     │
-        ┌────────────┼────────────┐
-        ▼                         ▼
-  Memory Storage             PDF/DOCX Export
-(JSON + FAISS)                     │
-        │                          ▼
-        ▼                   Download Reports
-  RAG Chat Interface
+                           User
+                             │
+                             ▼
+                  Streamlit User Interface
+                             │
+                             ▼
+                        User Query
+                             │
+                             ▼
+                    LangGraph Workflow
+                             │
+        ┌────────────────────┼────────────────────┐
+        ▼                    ▼                    ▼
+ Planner Agent       Research Agent      Review Agent
+        │                    │                    │
+        └────────────────────┼────────────────────┘
+                             ▼
+                       Writer Agent
+                             │
+                             ▼
+                        Final Report
+                             │
+         ┌───────────────────┼───────────────────┐
+         ▼                                       ▼
+ Memory Management                         Export Module
+(JSON + FAISS)                         (PDF / DOCX)
+         │
+         ▼
+   RAG Retrieval
+         │
+         ▼
+ Chat with Report
+         │
+         ▼
+  Contextual Answers
 ```
 
 ---
 
-## 🛠️ Tech Stack
+# 🤖 Agents
 
-### Frontend
-- Streamlit
+## 1. Planner Agent
 
-### AI & LLM
-- LangGraph
-- LangChain
-- OpenAI/Groq LLMs
+- Analyzes user query
+- Generates sub-questions
+- Plans research strategy
 
-### Retrieval
-- FAISS
-- Embeddings
-
-### Export
-- ReportLab (PDF)
-- python-docx (DOCX)
-
-### Storage
-- JSON Memory
-- Pickle Serialization
-
----
-
-## 📂 Project Structure
+### Example
 
 ```text
-ai-powered-research-assistant-using-langgraph-and-rag/
-│
-├── app.py
-├── graph/
-│   └── workflow.py
-│
-├── rag/
-│   ├── chat.py
-│   └── vector_store.py
-│
-├── memory/
-│   ├── memory_manager.py
-│   └── reports.json
-│
-├── exports/
-│   ├── pdf_exporter.py
-│   └── docx_exporter.py
-│
-├── data/
-│   ├── report_index.faiss
-│   └── report_chunks.pkl
-│
-├── requirements.txt
-└── README.md
+Query:
+"How will AI transform labor markets?"
+
+Generated Sub-questions:
+
+• Which jobs are at risk?
+• What new jobs are emerging?
+• Economic impact of AI?
 ```
 
 ---
 
-## ⚙️ Workflow
-
-### Step 1: User enters research topic
-
-Example:
-
-```text
-How will AI transform global labor markets and employment patterns?
-```
-
-### Step 2: LangGraph executes workflow
-
-```text
-Query
-   ↓
-Planner
-   ↓
-Research Agent
-   ↓
-Writer
-   ↓
-Reviewer
-   ↓
-Final Report
-```
-
-### Step 3: Report generation
+## 2. Research Agent
 
 - Collects information
-- Creates citations
-- Formats report
-
-### Step 4: Store memory
-
-Reports are stored in:
-
-```text
-memory/reports.json
-```
-
-Embeddings are stored in:
-
-```text
-data/report_index.faiss
-```
-
-### Step 5: Export
-
-Reports can be downloaded as:
-
-- PDF
-- DOCX
-
-### Step 6: Chat with Report
-
-Users can ask questions about generated reports using RAG.
+- Retrieves sources
+- Gathers evidence
 
 ---
 
-## 🧠 Retrieval-Augmented Generation (RAG)
+## 3. Writer Agent
 
-The system follows the RAG pipeline:
+- Organizes findings
+- Generates structured report
+- Adds citations and references
+
+---
+
+## 4. Review Agent
+
+- Evaluates report quality
+- Checks completeness
+- Improves coherence
+
+---
+
+# 🔄 Workflow
+
+```text
+User Query
+    ↓
+Planner Agent
+    ↓
+Research Agent
+    ↓
+Writer Agent
+    ↓
+Review Agent
+    ↓
+Final Report
+    ↓
+PDF / DOCX Export
+    ↓
+RAG Chat
+```
+
+---
+
+# 🧠 RAG Pipeline
 
 ```text
 User Question
       ↓
-Retrieve Relevant Context
+Chunking
+      ↓
+Embeddings
       ↓
 FAISS Similarity Search
+      ↓
+Retrieve Relevant Chunks
       ↓
 LLM
       ↓
 Generated Answer
 ```
 
-This improves factual accuracy and reduces hallucinations.
+---
+
+# 📂 Project Structure
+
+```text
+ai-powered-research-assistant-using-langgraph-and-rag/
+│
+├── app.py                          # Main Streamlit application
+│
+├── graph/
+│   ├── workflow.py                # LangGraph workflow
+│   └── state.py                   # Shared state definitions
+│
+├── agents/
+│   ├── planner.py                 # Planner Agent
+│   ├── researcher.py              # Research Agent
+│   ├── writer.py                  # Writer Agent
+│   └── reviewer.py                # Review Agent
+│
+├── rag/
+│   ├── chat.py                    # Chat with report
+│   ├── vector_store.py            # FAISS operations
+│   └── embeddings.py              # Embedding generation
+│
+├── memory/
+│   ├── memory_manager.py          # History management
+│   └── reports.json               # Stored reports
+│
+├── exports/
+│   ├── pdf_exporter.py            # PDF generation
+│   └── docx_exporter.py           # DOCX generation
+│
+├── data/
+│   ├── report_index.faiss         # FAISS index
+│   └── report_chunks.pkl          # Stored chunks
+│
+├── requirements.txt
+├── README.md
+└── .env
+```
 
 ---
 
-## 📊 Analytics Dashboard
+# 🛠️ Tech Stack
 
-The platform automatically calculates:
+### Frontend
 
-- Total Words
-- Number of Sources
-- Number of Citations
+- Streamlit
+
+### AI Frameworks
+
+- LangGraph
+- LangChain
+
+### LLM
+
+- OpenAI / Groq
+
+### Retrieval
+
+- FAISS
+- Embeddings
+
+### Export
+
+- ReportLab
+- python-docx
+
+### Storage
+
+- JSON
+- Pickle
+
+---
+
+# 📊 Analytics Dashboard
+
+The application automatically calculates:
+
+- Word Count
+- Source Count
+- Citation Count
 
 Example:
 
@@ -202,54 +250,65 @@ Citations: 24
 
 ---
 
-## 📄 PDF & DOCX Export
+# 📄 Report Export
 
-Generated reports can be exported as:
+Reports can be exported as:
 
-- PDF using ReportLab
-- DOCX using python-docx
+✅ PDF  
+✅ DOCX  
 
-Hyperlinks and citations are preserved during export.
+Hyperlinks and citations are preserved.
 
 ---
 
-## 💬 Chat with Report
+# 💬 Chat with Report
 
-Ask contextual questions such as:
+Users can ask questions such as:
 
 ```text
-What are the major findings of this report?
+What are the major findings?
 
-Which industries are most affected by AI?
+Summarize the report.
 
-Summarize the key recommendations.
+What risks are discussed?
+
+Which industries are most affected?
 ```
 
-The system retrieves relevant report sections and generates answers using RAG.
+The system retrieves relevant context using FAISS and generates answers using RAG.
 
 ---
 
-## 🚀 Installation
+# 🚀 Installation
 
-### Clone Repository
+## Clone Repository
 
 ```bash
 git clone https://github.com/your-username/ai-powered-research-assistant-using-langgraph-and-rag.git
 ```
 
-### Navigate to Project
+## Navigate to Project
 
 ```bash
 cd ai-powered-research-assistant-using-langgraph-and-rag
 ```
 
-### Install Dependencies
+## Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### Run Application
+## Add Environment Variables
+
+Create `.env`
+
+```env
+OPENAI_API_KEY=your_key
+GROQ_API_KEY=your_key
+```
+
+## Run Application
 
 ```bash
 streamlit run app.py
@@ -257,31 +316,31 @@ streamlit run app.py
 
 ---
 
-## 🔮 Future Enhancements
+# 🔮 Future Enhancements
 
-- Multi-user authentication
-- Cloud database integration
-- Advanced RAG pipelines
-- Hybrid search (BM25 + Vector Search)
-- Report comparison
-- Real-time web search
-- Agent specialization
-- Dashboard visualizations
+- User Authentication
+- Database Integration
+- Hybrid Search (BM25 + Vector Search)
+- Agent Collaboration
+- Real-time Web Search
+- Report Comparison
+- Dashboard Visualizations
+- Multi-user Support
 
 ---
 
-## 🎯 Use Cases
+# 🎯 Use Cases
 
 - Academic Research
 - Market Analysis
+- Company Research
+- Technology Trends
 - Industry Reports
-- Company Analysis
-- Technology Research
-- Financial Research
+- Financial Analysis
 
 ---
 
-## 👨‍💻 Author
+# 👨‍💻 Author
 
 **Sahith Vamsi Gandrala**
 
