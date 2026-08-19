@@ -1,9 +1,6 @@
 # Frontend
 streamlit>=1.45.0
 
-# Backend
-fastapi>=0.115.0
-uvicorn>=0.34.0
 
 # LLM & Agents
 langchain>=0.3.0
